@@ -41,6 +41,7 @@
 			this.on(_self.clickevent, clickEvent      );
 			
 			function touchStartEvent(e){
+				e.preventDefault();
 				_self.target = e.target;
 				_self.touch_start_time = new Date();
 				_self.tapcnt++;
