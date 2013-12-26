@@ -6,7 +6,7 @@
  */
 
 (function($){
-	$.fn.fasttap = function(moveEventDeley){
+	$.fn.fasttap = function(moveEventDeley,disableTouchStartEvent){
 		//== setup ========================================================================//
 			var _self = {
 				startX : 0,
@@ -32,7 +32,7 @@
 				_self.touchend   = "mouseup";
 				_self.touchmove  = "mousemove";
 			}
-			if(moveEventDeley==undefined){ moveEventDeley = 50 }
+			if(moveEventDeley==undefined || moveEventDeley=="" || moveEventDeley==0){ moveEventDeley = 50 }
 			
 		//== main ========================================================================//
 			this.on(_self.touchstart, touchStartEvent );
@@ -41,7 +41,9 @@
 			this.on(_self.clickevent, clickEvent      );
 			
 			function touchStartEvent(e){
-				e.preventDefault();
+				// 事情がない限りtrueにしない
+				if(disableTouchStartEvent == true){ e.preventDefault(); }
+				
 				_self.target = e.target;
 				_self.touch_start_time = new Date();
 				_self.tapcnt++;
