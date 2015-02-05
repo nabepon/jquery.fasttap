@@ -36,13 +36,15 @@
 			
 		//== main ========================================================================//
 			this.on(_self.touchstart, touchStartEvent );
-			this.on(_self.touchmove , touchMoveEvent  );
+			if(moveEventDeley>0){
+				this.on(_self.touchmove , touchMoveEvent  );
+			}
 			this.on(_self.touchend  , touchEndEvent   );
 			this.on(_self.clickevent, clickEvent      );
 			
 			function touchStartEvent(e){
 				// 事情がない限りtrueにしない
-				if(disableTouchStartEvent == true){ e.preventDefault(); }
+				if(disableTouchStartEvent == true){ rejectEvent(e); }
 				
 				_self.target = e.target;
 				_self.touch_start_time = new Date();
@@ -73,7 +75,7 @@
 			}
 		//座標取得
 			function setStartPos(e){
-				if(typeof e.originalEvent.touches !== "undefined"){
+				if(typeof e.originalEvent !== "undefined" && typeof e.originalEvent.touches !== "undefined"){
 					_self.moveX = _self.endX = _self.startX = e.originalEvent.touches[0].pageX;
 					_self.moveY = _self.endY = _self.startY = e.originalEvent.touches[0].pageY;
 				}else{
@@ -82,7 +84,7 @@
 				};
 			}
 			function setCurrentPos(e){
-				if(typeof e.originalEvent.touches !== "undefined"){
+				if(typeof e.originalEvent !== "undefined" && typeof e.originalEvent.touches !== "undefined"){
 					_self.endX = e.originalEvent.touches[0].pageX;
 					_self.endY = e.originalEvent.touches[0].pageY;
 				}else{
@@ -91,7 +93,7 @@
 				};
 			}
 			function setMovePos(e){
-				if(typeof e.originalEvent.touches !== "undefined"){
+				if(typeof e.originalEvent !== "undefined" && typeof e.originalEvent.touches !== "undefined"){
 					_self.moveX = e.originalEvent.touches[0].pageX;
 					_self.moveY = e.originalEvent.touches[0].pageY;
 				}else{
@@ -179,4 +181,5 @@
 		
 		return _self;
 	}
-})(jQuery)
+})($);
+
