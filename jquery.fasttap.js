@@ -78,6 +78,9 @@
 				if(typeof e.originalEvent !== "undefined" && typeof e.originalEvent.touches !== "undefined"){
 					_self.moveX = _self.endX = _self.startX = e.originalEvent.touches[0].pageX;
 					_self.moveY = _self.endY = _self.startY = e.originalEvent.touches[0].pageY;
+				}else if(typeof e.touches !== "undefined"){
+					_self.moveX = _self.endX = _self.startX = e.touches[0].pageX;
+					_self.moveY = _self.endY = _self.startY = e.touches[0].pageY;
 				}else{
 					_self.moveX = _self.endX = _self.startX = e.pageX;
 					_self.moveY = _self.endY = _self.startY = e.pageY;
@@ -87,6 +90,9 @@
 				if(typeof e.originalEvent !== "undefined" && typeof e.originalEvent.touches !== "undefined"){
 					_self.endX = e.originalEvent.touches[0].pageX;
 					_self.endY = e.originalEvent.touches[0].pageY;
+				}else if(typeof e.touches !== "undefined"){
+					_self.endX = e.touches[0].pageX;
+					_self.endY = e.touches[0].pageY;
 				}else{
 					_self.endX = e.pageX;
 					_self.endY = e.pageY;
@@ -96,6 +102,9 @@
 				if(typeof e.originalEvent !== "undefined" && typeof e.originalEvent.touches !== "undefined"){
 					_self.moveX = e.originalEvent.touches[0].pageX;
 					_self.moveY = e.originalEvent.touches[0].pageY;
+				}else if(typeof e.touches !== "undefined"){
+					_self.moveX = e.touches[0].pageX;
+					_self.moveY = e.touches[0].pageY;
 				}else{
 					_self.moveX = e.pageX;
 					_self.moveY = e.pageY;
